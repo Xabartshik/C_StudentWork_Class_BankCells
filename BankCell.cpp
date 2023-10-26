@@ -4,85 +4,85 @@
 #include <string>
 #include <fstream>
 
-BankAccount::BankAccount(string accNumber, double amount, string newCurrency, string newOwner)//Создание объекта класса Банковский счёт 
+BankAccount::BankAccount(string accNumber, double amount, string newCurrency, string newOwner)//РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚ 
 {
+  
+  ID = accNumber;
+  balance = amount;
+  currency = newCurrency;
+  owner = newOwner;
+}
 
-    ID = accNumber;
-    balance = amount;
-    currency = newCurrency;
+BankAccount::BankAccount()//РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚ (Р±РµР· РґР°РЅРЅС‹С…)
+{
+  
+  ID = "";
+  balance = 0;
+  currency = "";
+  owner = "";
+}
+
+
+string BankAccount::get_ID() //Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° РІ РІРёРґРµ СЃС‚СЂРѕРєРё
+{
+  return ID;
+}
+
+ double BankAccount::get_Balance()  //Р’РѕР·РІСЂР°С‰Р°РµС‚ Р±Р°Р»Р°РЅСЃ СЃС‡РµС‚Р° РІ РІРёРґРµ double
+{
+ return balance;
+}
+
+void BankAccount::deposit(double amount) //Р”РѕР±Р°РІР»СЏРµС‚ amount РЅР° balance СЃС‡РµС‚Р° 
+{
+  balance += amount;
+  cout << "РЎС‡С‘С‚ РїРѕРїРѕР»РЅРµРЅ РЅР° " << amount << endl;
+}
+
+void BankAccount::withdraw(double amount) //РЎРЅРёРјР°РµС‚ amount СЃ balance СЃС‡РµС‚Р°. Р•СЃР»Рё РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ - РїРёС€РµС‚, С‡С‚Рѕ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ
+//todo: РќР°РїРёСЃР°С‚СЊ, С‡С‚РѕР±С‹ С„СѓРЅРєС†РёСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё Р±СЂР°Р»Р° РєСЂРµРґРёС‚ РїРѕРґ 35 РїСЂРѕС†РµРЅС‚РѕРІ РіРѕРґРѕРІС‹С…
+{
+  if (amount <= balance) 
+  {
+    balance -= amount;
+  } 
+  else 
+  {
+    throw std::invalid_argument("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РЅР° СЃС‡РµС‚Рµ");
+  }
+}
+void BankAccount::set_Owner(string newOwner)//РР·РјРµРЅСЏРµС‚ owner  РЅР° newOwner
+  {
     owner = newOwner;
-}
+  }
 
-BankAccount::BankAccount()//Создание объекта класса Банковский счёт (без данных)
-{
-
-    ID = "";
-    balance = 0;
-    currency = "";
-    owner = "";
-}
-
-
-string BankAccount::get_ID() //Возвращает регистрационный номер счета в виде строки
-{
-    return ID;
-}
-
-double BankAccount::get_Balance()  //Возвращает баланс счета в виде double
-{
-    return balance;
-}
-
-void BankAccount::deposit(double amount) //Добавляет amount на balance счета 
-{
-    balance += amount;
-    cout << "Счёт пополнен на " << amount << endl;
-}
-
-void BankAccount::withdraw(double amount) //Снимает amount с balance счета. Если недостаточно - пишет, что недостаточно средств
-//todo: Написать, чтобы функция автоматически брала кредит под 35 процентов годовых
-{
-    if (amount <= balance)
-    {
-        balance -= amount;
-    }
-    else
-    {
-        throw std::invalid_argument("Недостаточно средств на счете");
-    }
-}
-void BankAccount::set_Owner(string newOwner)//Изменяет owner  на newOwner
-{
-    owner = newOwner;
-}
-
-void BankAccount::set_ID(string newID)//Изменяет ID  на newID
-{
+void BankAccount::set_ID(string newID)//РР·РјРµРЅСЏРµС‚ ID  РЅР° newID
+  {
     ID = newID;
-}
+  }
 
-void BankAccount::set_Currency(string newCurrency)//Изменяет Currency  на newCurrency
-{
+    void BankAccount::set_Currency(string newCurrency)//РР·РјРµРЅСЏРµС‚ Currency  РЅР° newCurrency
+  {
     currency = newCurrency;
-}
+  }
 
-string BankAccount::to_string_Balance()//Вывод количества средств в виде строки
-{
-    string str_balance = "";
-    str_balance += std::to_string(balance) + " " + currency;
-    return str_balance;
-}
+string BankAccount::to_string_Balance()//Р’С‹РІРѕРґ РєРѕР»РёС‡РµСЃС‚РІР° СЃСЂРµРґСЃС‚РІ РІ РІРёРґРµ СЃС‚СЂРѕРєРё
+  {
+     string str_balance = "";
+     str_balance += std::to_string(balance) + " " + currency;
+     return str_balance;
+  }
 
-string BankAccount::to_string()//Вывод сведений о счете в виде строки
-{
+string BankAccount::to_string()//Р’С‹РІРѕРґ СЃРІРµРґРµРЅРёР№ Рѕ СЃС‡РµС‚Рµ РІ РІРёРґРµ СЃС‚СЂРѕРєРё
+  {
     string output = "";
-    output += "Владелец: " + owner + "; ";
-    output += "Баланс: " + std::to_string(balance) + "; ";
+    output += "Р’Р»Р°РґРµР»РµС†: " + owner + "; ";
+    output += "Р‘Р°Р»Р°РЅСЃ: " + std::to_string(balance) +"; ";
     output += currency;
-    output += "Регистрационный номер: " + ID + ";";
+    output += "Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ: " + ID +";";
     return output;
-}
-void BankAccount::set_Balance(double newBalance)//Изменяет balance  на newBalance
+  }
+void BankAccount::set_Balance(double newBalance)//РР·РјРµРЅСЏРµС‚ balance  РЅР° newBalance
 {
     balance = newBalance;
 }
@@ -90,56 +90,55 @@ void BankAccount::set_Balance(double newBalance)//Изменяет balance  на newBalanc
 
 
 
-void displayAccountsList(vector<BankAccount> accounts)//Выводит на экран все созданные счета
+void displayAccountsList(vector<BankAccount> accounts)//Р’С‹РІРѕРґРёС‚ РЅР° СЌРєСЂР°РЅ РІСЃРµ СЃРѕР·РґР°РЅРЅС‹Рµ СЃС‡РµС‚Р°
 {
-    for (int i = 0; i < accounts.size(); i++)
-    {
+for (int i = 0; i <accounts.size(); i++)
+{
+  
+  cout << "РЎС‡РµС‚ РЅРѕРјРµСЂ: " << i+1 << endl;
+  cout << accounts[i].to_string();
+  cout << endl;
 
-        cout << "Счет номер: " << i + 1 << endl;
-        cout << accounts[i].to_string();
-        cout << endl;
-
-    }
+}
 }
 
-//Сохранение объектов в файл
-void saveAccounts(const vector<BankAccount>& accounts, const string& filename)
+//РЎРѕС…СЂР°РЅРµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ РІ С„Р°Р№Р»
+void saveAccounts(const vector<BankAccount>& accounts, const string& filename) 
 {
     ofstream file(filename, ios::binary);
-
+    
     if (file.is_open()) {
         for (const BankAccount& account : accounts) {
             file.write(reinterpret_cast<const char*>(&account), sizeof(BankAccount));
         }
-
+        
         file.close();
-    }
-    else {
-        throw runtime_error("Не удалось открыть файл для сохранения");
+    } else {
+          throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ");
     }
 }
 
-//Загрузка массива объектов из файла
-vector<BankAccount> loadAccounts(const string& filename)
+//Р—Р°РіСЂСѓР·РєР° РјР°СЃСЃРёРІР° РѕР±СЉРµРєС‚РѕРІ РёР· С„Р°Р№Р»Р°
+vector<BankAccount> loadAccounts(const string& filename) 
 {
-
+    
     vector<BankAccount> accounts;
     ifstream file(filename, ios::binary);
-
-    if (file.is_open())
+    
+    if (file.is_open()) 
     {
         BankAccount account;
-        while (file.read(reinterpret_cast<char*>(&account), sizeof(BankAccount)))
+        while (file.read(reinterpret_cast<char*>(&account), sizeof(BankAccount))) 
         {
             accounts.push_back(account);
         }
-
+        
         file.close();
     }
-    else
+     else 
     {
-        throw runtime_error("Не удалось открыть файл для загрузки");
+          throw runtime_error("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РґР»СЏ Р·Р°РіСЂСѓР·РєРё");
     }
-
+    
     return accounts;
 }

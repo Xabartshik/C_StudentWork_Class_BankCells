@@ -1,38 +1,40 @@
-#pragma once
+#ifndef BANKCELL_H
+#define BANKCELL_H
 
 #include <string>
 #include <vector>
 
 using namespace std;
-//Класс для обьекта Банковский счет
+//РљР»Р°СЃСЃ РґР»СЏ РѕР±СЊРµРєС‚Р° Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚
 class BankAccount {
-private:
-    string ID;//Регистрационный номер счёта
-    string owner;//Хозяин счёта
-    double balance;//Баланс на счету
-    string currency;//Тип валюты
+  private:
+    string ID;//Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡С‘С‚Р°
+    string owner;//РҐРѕР·СЏРёРЅ СЃС‡С‘С‚Р°
+    double balance;//Р‘Р°Р»Р°РЅСЃ РЅР° СЃС‡РµС‚Сѓ
+    string currency;//РўРёРї РІР°Р»СЋС‚С‹
 
-
-public:
-    BankAccount(string accNumber, double amount, string newCurrency, string newOwner);//Создание объекта класса Банковский счёт 
-    BankAccount();//Создание объекта класса Банковский счёт (без данных)
-    string get_ID(); //Возвращает регистрационный номер счета в виде строки
-    double get_Balance(); //Возвращает баланс счета в виде double
-    void deposit(double amount);//Добавляет amount на balance счета 
-    void withdraw(double amount);//Снимает amount с balance счета. Если недостаточно - пишет, что недостаточно средств
-    //todo: Написать, чтобы функция автоматически брала кредит под 35 процентов годовых
-    void set_Owner(string newOwner);//Изменяет owner  на newOwner
-    void set_Currency(string newCurrency);//Изменяет Currency  на newCurrency
-    void set_ID(string newID);//Изменяет ID  на newID
-    void set_Balance(double newBalance);//Изменяет balance  на newBalance
-    string to_string_Balance();//Вывод количества средств на экран
-    string to_string();//Вывод сведений о счете на экран
+  
+  public:
+    BankAccount(string accNumber, double amount, string newCurrency, string newOwner);//РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚ 
+    BankAccount();//РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚ (Р±РµР· РґР°РЅРЅС‹С…)
+    string get_ID(); //Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ СЃС‡РµС‚Р° РІ РІРёРґРµ СЃС‚СЂРѕРєРё
+    double get_Balance(); //Р’РѕР·РІСЂР°С‰Р°РµС‚ Р±Р°Р»Р°РЅСЃ СЃС‡РµС‚Р° РІ РІРёРґРµ double
+    void deposit(double amount);//Р”РѕР±Р°РІР»СЏРµС‚ amount РЅР° balance СЃС‡РµС‚Р° 
+    void withdraw(double amount);//РЎРЅРёРјР°РµС‚ amount СЃ balance СЃС‡РµС‚Р°. Р•СЃР»Рё РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ - РїРёС€РµС‚, С‡С‚Рѕ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ
+//todo: РќР°РїРёСЃР°С‚СЊ, С‡С‚РѕР±С‹ С„СѓРЅРєС†РёСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё Р±СЂР°Р»Р° РєСЂРµРґРёС‚ РїРѕРґ 35 РїСЂРѕС†РµРЅС‚РѕРІ РіРѕРґРѕРІС‹С…
+    void set_Owner(string newOwner);//РР·РјРµРЅСЏРµС‚ owner  РЅР° newOwner
+    void set_Currency(string newCurrency);//РР·РјРµРЅСЏРµС‚ Currency  РЅР° newCurrency
+    void set_ID(string newID);//РР·РјРµРЅСЏРµС‚ ID  РЅР° newID
+    void set_Balance(double newBalance);//РР·РјРµРЅСЏРµС‚ balance  РЅР° newBalance
+    string to_string_Balance();//Р’С‹РІРѕРґ РєРѕР»РёС‡РµСЃС‚РІР° СЃСЂРµРґСЃС‚РІ РЅР° СЌРєСЂР°РЅ
+    string to_string();//Р’С‹РІРѕРґ СЃРІРµРґРµРЅРёР№ Рѕ СЃС‡РµС‚Рµ РЅР° СЌРєСЂР°РЅ
 
 
 };
 
-void displayAccountsList(vector<BankAccount> accounts);//Выводит на экран все созданные счета
-//Загрузка массива объектов из файла
+void displayAccountsList(vector<BankAccount> accounts);//Р’С‹РІРѕРґРёС‚ РЅР° СЌРєСЂР°РЅ РІСЃРµ СЃРѕР·РґР°РЅРЅС‹Рµ СЃС‡РµС‚Р°
+//Р—Р°РіСЂСѓР·РєР° РјР°СЃСЃРёРІР° РѕР±СЉРµРєС‚РѕРІ РёР· С„Р°Р№Р»Р°
 vector<BankAccount> loadAccounts(const string& filename);
-//Сохранение объектов в файл
+//РЎРѕС…СЂР°РЅРµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ РІ С„Р°Р№Р»
 void saveAccounts(const vector<BankAccount>& accounts, const string& filename);
+#endif

@@ -8,7 +8,8 @@
 using namespace std;
 
 int main() {
-    system("chcp 1251");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     vector<BankAccount> accounts;//Вектор для хранения нескольких объектов класса BankAccount
     accounts.push_back(BankAccount("100", 1000.0, "Рупия", "Иван"));
     accounts.push_back(BankAccount("101", 1500.0, "Юань", "Наташа"));

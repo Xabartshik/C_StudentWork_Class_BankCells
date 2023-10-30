@@ -23,12 +23,23 @@ BankAccount::BankAccount()//Создание объекта класса Банковский счёт (без данных)
 }
 
 
-string BankAccount::get_ID() //Возвращает регистрационный номер счета в виде строки
+string BankAccount::get_ID() const //Возвращает регистрационный номер счета в виде строки
 {
     return ID;
 }
 
-double BankAccount::get_Balance()  //Возвращает баланс счета в виде double
+string BankAccount::get_Owner() const //Возвращает хозяина счета в виде строки
+{
+    return owner;
+}
+
+string BankAccount::get_Currency() const //Возвращает валюту в виде строки
+{
+    return currency;
+}
+
+
+double BankAccount::get_Balance() const //Возвращает баланс счета в виде double
 {
     return balance;
 }
@@ -51,35 +62,35 @@ void BankAccount::withdraw(double amount) //Снимает amount с balance счета. Если
         throw std::invalid_argument("Недостаточно средств на счете");
     }
 }
-void BankAccount::set_Owner(string newOwner)//Изменяет owner  на newOwner
+void BankAccount::set_Owner(const string & newOwner)//Изменяет owner  на newOwner
 {
     owner = newOwner;
 }
 
-void BankAccount::set_ID(string newID)//Изменяет ID  на newID
+void BankAccount::set_ID(const string & newID)//Изменяет ID  на newID
 {
     ID = newID;
 }
 
-void BankAccount::set_Currency(string newCurrency)//Изменяет Currency  на newCurrency
+void BankAccount::set_Currency(const string & newCurrency)//Изменяет Currency  на newCurrency
 {
     currency = newCurrency;
 }
 
-string BankAccount::to_string_Balance()//Вывод количества средств в виде строки
+string BankAccount::to_string_Balance()const//Вывод количества средств в виде строки
 {
     string str_balance = "";
     str_balance += std::to_string(balance) + " " + currency;
     return str_balance;
 }
 
-string BankAccount::to_string()//Вывод сведений о счете в виде строки
+string BankAccount::to_string()const//Вывод сведений о счете в виде строки
 {
     string output = "";
     output += "Владелец: " + owner + "; ";
-    output += "Баланс: " + std::to_string(balance) + "; ";
+    output += "Баланс: " + std::to_string(balance) + " ";
     output += currency;
-    output += "Регистрационный номер: " + ID + ";";
+    output += " Регистрационный номер: " + ID + ";";
     return output;
 }
 void BankAccount::set_Balance(double newBalance)//Изменяет balance  на newBalance

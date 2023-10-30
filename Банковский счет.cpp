@@ -6,9 +6,9 @@
 #include "BankCell.h"
 #include <windows.h>
 using namespace std;
-
+//Динамические обьекты
 int main() {
-    SetConsoleCP(1251);
+    SetConsoleCP(1251);//Штука чинит кодировку
     SetConsoleOutputCP(1251);
     vector<BankAccount> accounts;//Вектор для хранения нескольких объектов класса BankAccount
     accounts.push_back(BankAccount("100", 1000.0, "Рупия", "Иван"));
@@ -21,6 +21,21 @@ int main() {
     string newCurrency;//Переменная для ввода нового хозяина счета
     int accountIndex;//Переменная для работы с вектором счетов
     string filename;//Переменная для ввода/вывода массива обьектов в файл
+
+    BankAccount* test_account = new BankAccount("666", 999.0, "Шекель", "Земмельвейц"); // Создание динамического объекта
+
+    // Использование объекта
+    string test_ID = test_account->get_ID();
+    string test_owner = test_account->get_Owner();
+    string test_currency = test_account->get_Currency();
+    double test_balance = test_account->get_Balance();
+    string test_str_balance = test_account->to_string();
+    cout << test_str_balance << endl;
+
+    // Удаление объекта
+    delete test_account;
+
+
     do {
 
 

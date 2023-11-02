@@ -7,19 +7,19 @@
 BankAccount::BankAccount(string accNumber, double amount, string newCurrency, string newOwner)//Создание объекта класса Банковский счёт 
 {
 
-    ID = accNumber;
-    balance = amount;
-    currency = newCurrency;
-    owner = newOwner;
+        set_Balance(amount);
+        set_Currency(newCurrency);
+        set_Owner(newOwner);
+        set_ID(accNumber);
 }
 
 BankAccount::BankAccount()//Создание объекта класса Банковский счёт (без данных)
 {
 
-    ID = "";
-    balance = 0;
-    currency = "";
-    owner = "";
+    set_Balance(0);
+    set_Currency("");
+    set_Owner("");
+    set_ID("");
 }
 
 
@@ -153,4 +153,29 @@ vector<BankAccount> loadAccounts(const string& filename)
     }
 
     return accounts;
+}
+//Создание динамического массива объектов
+void fillDynamicArray(BankAccount** dynamicArray, int size) {
+    for (int i = 0; i < size; i++) {
+        string accNumber;
+        double amount;
+        string newCurrency;
+        string newOwner;
+
+        // Ввод данных для создания объекта
+        cout << "Введите регистрационный номер счёта: ";
+        cin >> accNumber;
+        cout << "Введите начальное значение баланса: ";
+        cin >> amount;
+        cout << "Введите тип валюты: ";
+        cin >> newCurrency;
+        cout << "Введите ФИО хозяина: ";
+        cin >> newOwner;
+
+        // Создание объекта с помощью конструктора
+        BankAccount* newAccount = new BankAccount(accNumber, amount, newCurrency, newOwner);
+
+        // Сохранение указателя на объект в динамическом массиве
+        dynamicArray[i] = newAccount;
+    }
 }

@@ -38,3 +38,5 @@ void displayAccountsList(vector<BankAccount> accounts);//Выводит на экран все со
 vector<BankAccount> loadAccounts(const string& filename);
 //Сохранение объектов в файл
 void saveAccounts(const vector<BankAccount>& accounts, const string& filename);
+//Создание динамического массива объектов
+void fillDynamicArray(BankAccount** dynamicArray, int size);

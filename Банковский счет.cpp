@@ -35,6 +35,24 @@ int main() {
     // Удаление объекта
     delete test_account;
 
+    BankAccount account1("444", 444.0, "Юань", "Сунь Хунь Чай");
+    BankAccount account2("232ААА", 1000.0, "Франк", "Иоганн");
+
+    BankAccount staticArray[2] = { account1, account2 };
+    for (int i = 0; i < 2; i++) {
+        staticArray[i] = BankAccount();
+    }
+
+    BankAccount** dynamicArray = new BankAccount * [3];
+    fillDynamicArray(dynamicArray, 3);
+    dynamicArray[0] = new BankAccount("777", 500.0, "Доллар", "Джон");
+    dynamicArray[1] = new BankAccount("888", 2000.0, "Евро", "Мария");
+    cout << dynamicArray[2]->to_string() << endl;
+    for (int i = 0; i < 2; i++) {
+        delete dynamicArray[i];
+    }
+    delete[] dynamicArray;
+
 
     do {
 

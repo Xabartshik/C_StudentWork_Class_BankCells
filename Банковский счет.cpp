@@ -5,6 +5,7 @@
 #include <locale.h>
 #include "BankCell.h"
 #include <windows.h>
+#include <cassert>
 using namespace std;
 //Динамические обьекты
 int main() {
@@ -21,7 +22,14 @@ int main() {
     string newCurrency;//Переменная для ввода нового хозяина счета
     int accountIndex;//Переменная для работы с вектором счетов
     string filename;//Переменная для ввода/вывода массива обьектов в файл
+    //////////////////////////////////////////////////////////////////////////
+    {
+        BankAccount test_acc("444", 8800, "Йена", "Ли Си Цын");
+        float test = test_acc.get_Balance();
+        assert(abs(test - 8800) <= 0.0000000001);
 
+    }
+    //////////////////////////////////////////////////////////////////////////
     BankAccount* test_account = new BankAccount("666", 999.0, "Шекель", "Земмельвейц"); // Создание динамического объекта
 
     // Использование объекта

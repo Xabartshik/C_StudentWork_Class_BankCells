@@ -3,7 +3,8 @@
 #include <vector>
 #include <string>
 #include <fstream>
-
+#include <cassert>
+///Ошлаков Данил, ИВТ-22
 BankAccount::BankAccount(string accNumber, double amount, string newCurrency, string newOwner)//Создание объекта класса Банковский счёт 
 {
 
@@ -178,4 +179,19 @@ void fillDynamicArray(BankAccount** dynamicArray, int size) {
         // Сохранение указателя на объект в динамическом массиве
         dynamicArray[i] = newAccount;
     }
+}
+///Проверка работоспобсности класса
+void test_Class()
+{
+    BankAccount test_acc("444", 8800, "Йена", "Ли Си Цын");
+    double test = test_acc.get_Balance();
+    assert(abs(test - 8800) <= 0.0000000001);
+    string test_str = test_acc.get_ID();
+    assert(test_str == "444");
+    string test_str = test_acc.get_Owner();
+    assert(test_str == "Ли Си Цын");
+    string test_str = test_acc.get_Currency();
+    assert(test_str == "Йена");
+
+
 }

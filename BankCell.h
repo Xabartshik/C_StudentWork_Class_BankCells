@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-
+///Ошлаков Данил, ИВТ-22
 using namespace std;
 //Класс для обьекта Банковский счет
 class BankAccount {
@@ -40,3 +40,5 @@ vector<BankAccount> loadAccounts(const string& filename);
 void saveAccounts(const vector<BankAccount>& accounts, const string& filename);
 //Создание динамического массива объектов
 void fillDynamicArray(BankAccount** dynamicArray, int size);
+///Проверка работоспобсности класса
+void test_Class();
